@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.urls import reverse_lazy
 
 from users.forms import UserSignUpForm
 from django.contrib.auth import (
@@ -53,6 +54,6 @@ def signout(request):
     return redirect('users:signin')
 
 
-@decorators.login_required(login_url='/user/signin')
+@decorators.login_required(login_url=reverse_lazy('users:signin'))
 def profile(request):
     return render(request, 'users/profile.html')
