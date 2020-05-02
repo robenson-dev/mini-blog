@@ -1,5 +1,16 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+
+
+class User(AbstractUser):
+
+    is_super_blogger = models.BooleanField(default=False)
+
+    class Meta(AbstractUser.Meta):
+        swappable = 'AUTH_USER_MODEL'
+
+    def __str__(self):
+        return self.username
 
 
 class Profile(models.Model):
