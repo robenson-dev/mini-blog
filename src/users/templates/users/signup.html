@@ -1,22 +1,42 @@
+{% extends 'layout/layout.html' %}
 {% load crispy_forms_tags %}
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title></title>
-  </head>
-  <body>
-    <div class="container">
+{% block content %}
+<br><br>
+<div class="container pt-lg-7 mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5">
+      <div class="card bg-secondary shadow border-0">
 
-      <form action="{% url 'users:signup' %}" method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
+        <!-- <div class="card-header bg-white pb-5">
+          <div class="text-muted text-center mb-3"><small>Sign up with</small></div>
+          <div class="text-center">
+            <a href="#" class="btn btn-neutral btn-icon mr-4">
+              <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
+              <span class="btn-inner--text">Github</span>
+            </a>
+            <a href="#" class="btn btn-neutral btn-icon">
+              <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
+              <span class="btn-inner--text">Google</span>
+            </a>
+          </div>
+        </div> -->
 
+        <div class="card-body px-lg-5 py-lg-5">
 
-        <button type="submit" class="btn btn-primary">Sign in</button>
-      </form>
+          <div class="text-center text-muted mb-4">
+            <small>Or sign up with credentials</small>
+          </div>
+
+          <form action="{% url 'users:signup' %}" role="form" method="post">
+            {% csrf_token %}
+            {% crispy form %}
+          </form>
+
+        </div>
+
+      </div>
     </div>
+  </div>
+</div>
 
-  </body>
-</html>
+{% endblock %}
