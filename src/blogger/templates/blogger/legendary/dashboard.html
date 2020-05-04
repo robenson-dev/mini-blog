@@ -1,0 +1,55 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+<hr><br><br>
+
+{% include 'blogger/legendary/stats.html' %}
+<div class="container-fluid row">
+
+  <div class="col-md">
+    <h5 class="card text-uppercase text-center">post</h5>
+
+    <div class="card card-body">
+      <a href="{% url 'legendary:create-post' %}" class="btn btn-primary btn-sm btn-block">create post</a>
+
+      <table class="table">
+        <thead>
+          <tr>
+              <th class="text-center">#</th>
+              <th class="text-right">Title</th>
+              <th class="text-right">Content</th>
+              <th class="text-right">Date posted</th>
+              <th class="text-right">author</th>
+              <th class="text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+              <tr>
+                <td class="text-center">{{ post.id }}</td>
+                <td class="text-right">{{ post.title }}</td>
+                <td class="text-right">{{ post.content|truncatewords:1 }}</td>
+                <td class="text-right">{{ post.date_posted|date:"F d, Y" }}</td>
+                <td class="text-right">{{ post.author }}</td>
+                <td class="td-actions text-right">
+                  <a type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm btn-simple" data-original-title="" title="" href="{% url 'legendary:detail-post' post.id %}">
+                    <i class="ni ni-circle-08 pt-1"></i>
+                  </a>
+                  <a ype="button" rel="tooltip" class="btn btn-success btn-icon btn-sm btn-simple" data-original-title="" title="" href="{% url 'legendary:update-post' post.id %}">
+                    <i class="ni ni-settings-gear-65 pt-1"></i>
+                  </a>
+                  <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm btn-simple" data-original-title="" title="">
+                    <i class="ni ni-fat-remove pt-1"></i>
+                    </button>
+                </td>
+              </tr>
+            {% endfor %}
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
