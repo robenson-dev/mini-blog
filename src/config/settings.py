@@ -8,6 +8,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+STATIC_FILE_DIR = os.path.join(BASE_DIR, 'static')
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -21,9 +24,14 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
 
     'debug_toolbar',
-    'crispy_forms'
+    'crispy_forms',
+    'ckeditor',
+    'ckeditor_uploader',
 
 ]
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -42,7 +50,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': (TEMPLATE_DIR,),
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -102,14 +110,17 @@ USE_L10N = True
 USE_TZ = True
 
 AUTH_USER_MODEL = 'users.User'
+LOGIN_URL = 'users:signin'
+LOGOUT_URL = 'users:signout'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = 'static/'
+STATICFILES_DIRS = (STATIC_FILE_DIR, )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+# MEDIA_ROOT = 'media/'
 
 INTERNAL_IPS = [
     '127.0.0.1',
@@ -118,10 +129,9 @@ INTERNAL_IPS = [
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 #SMTP Configuration
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'tysonpierre30@gmail.com'
-EMAIL_HOST_PASSWORD = 'TPierre159874'
+EMAIL_HOST_PASSWORD = '**********'
