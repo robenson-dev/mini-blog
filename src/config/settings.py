@@ -8,10 +8,10 @@ SECRET_KEY = 'r97)rl91i3klb=wp8vjl=z4_=sub7hba^^o1xchmc=^zq%m=!r'
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
 else:
-    DEBUG = False
+    DEBUG = True
 
 
-ALLOWED_HOSTS = ['https://visibilyblog.herokuapp.com/', '127.0.0.1']
+ALLOWED_HOSTS = ['https://visibilyblog.herokuapp.com/', 'localhost']
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_FILE_DIR = os.path.join(BASE_DIR, 'static')
