@@ -13,6 +13,7 @@ pillow = "*"
 django-ckeditor-5 = "*"
 django-storages = "*"
 boto3 = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
