@@ -1,15 +1,14 @@
 from django import forms
-from ckeditor.widgets import CKEditorWidget
-
-from blogger.models import Post
-
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Div
-from crispy_forms.bootstrap import PrependedText
+from blogger.models import Post, Comment
 
 class CreatePostForm(forms.ModelForm):
-    content = forms.CharField(widget=CKEditorWidget())
-    
+
     class Meta:
         model = Post
         fields = ['title', 'content']
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
