@@ -11,6 +11,8 @@ django-debug-toolbar = "*"
 django-crispy-forms = "*"
 pillow = "*"
 django-ckeditor-5 = "*"
+django-storages = "*"
+boto3 = "*"
 
 [requires]
 python_version = "3.8"

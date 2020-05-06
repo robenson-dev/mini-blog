@@ -4,9 +4,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'r97)rl91i3klb=wp8vjl=z4_=sub7hba^^o1xchmc=^zq%m=!r'
 
-DEBUG = True
 
-ALLOWED_HOSTS = []
+if os.environ.get('ENV') == 'PRODUCTION':
+    DEBUG = False
+else:
+    DEBUG = False
+
+
+ALLOWED_HOSTS = ['https://visibilyblog.herokuapp.com/', '127.0.0.1']
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_FILE_DIR = os.path.join(BASE_DIR, 'static')
@@ -26,6 +31,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'crispy_forms',
     'django_ckeditor_5',
+    'storages',
 
 ]
 
@@ -110,13 +116,22 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = 'users:signin'
 LOGOUT_URL = 'users:signout'
 
-
 STATIC_URL = '/static/'
-# STATIC_ROOT = 'static/'
 STATICFILES_DIRS = (STATIC_FILE_DIR, )
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+if os.environ.get('ENV') == 'PRODUCTION':
+    STATIC_ROOT = 'static/'
+
+    #SMTP Configuration
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = 'tysonpierre30@gmail.com'
+    EMAIL_HOST_PASSWORD = 'TPierre159874'
 
 
 INTERNAL_IPS = [
@@ -124,14 +139,6 @@ INTERNAL_IPS = [
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-#SMTP Configuration
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'tysonpierre30@gmail.com'
-EMAIL_HOST_PASSWORD = 'TPierre159874'
 
 
 # CKEDITOR_5
@@ -216,3 +223,15 @@ CKEDITOR_5_CONFIGS = {
 
     }
 }
+
+
+#S3 BUCKETS CONFIG
+
+AWS_ACCESS_KEY_ID = "AKIARKRRJ6TWBUDZEOGT"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = "robenson-crm1-bucket"
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

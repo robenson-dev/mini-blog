@@ -13,10 +13,14 @@ urlpatterns = [
     ], 'blogger'), namespace='member')),
 
     path('legendary/', include(([
+
         path('', legendary.dashboard, name='legendary-dashboard'),
+        path('api/', legendary.get_data),
+
         path('post/new', legendary.PostCreateView.as_view(), name='create-post'),
         path('post/<int:pk>/update/', legendary.PostUpdateView.as_view(), name='update-post'),
         path('post/<int:pk>/delete/', legendary.PostDeleteView.as_view(), name='delete-post'),
+
     ], 'blogger'), namespace='legendary')),
 
 ]

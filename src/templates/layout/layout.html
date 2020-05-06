@@ -20,7 +20,7 @@
 
   <body>
 
-    <nav class='navbarb'>
+    <nav class='navbarb mb-5'>
 
       <a class='logo' href='{% url 'home' %}'>
         <div id='particles'></div>
@@ -51,9 +51,7 @@
         {% endif %}
       </div>
     </nav>
-
-
-
+    <hr>
 
 
     {% block content %}{% endblock %}
@@ -63,29 +61,8 @@
     <script src="{% static '/assets/vendor/bootstrap/bootstrap.min.js' %}"></script>
 
     <script src="{% static '/assets/js/argon.min.js' %}"></script>
-    <script type="text/javascript">
-
-      function getId(url) {
-          const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-          const match = url.match(regExp);
-
-          return (match && match[2].length === 11)
-            ? match[2]
-            : null;
-      }
-
-      figure = document.querySelectorAll('figure[class="media"]')
-
-      document.querySelectorAll('oembed[url]').forEach((element, x) => {
-        figure[x].innerHTML = ''
-        let video_id = getId(element.attributes.url.value);
-
-        let iframe = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="//www.youtube.com/embed/'
-        + video_id + '" frameborder="0" allowfullscreen></iframe></div>';
-        figure[x].innerHTML = iframe
-      });
-
-    </script>
+    <script src="{% static '/layout/scripts/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 
     {% block scripts %}{% endblock %}
   </body>

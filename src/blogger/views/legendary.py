@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect,get_object_or_404
+from django.http import JsonResponse
+
 from blogger.models import Post, Comment
+from users.models import User
 from django.db.models import Q
+
 from blogger.forms import CreatePostForm, CommentForm
 
 from users.decorators import super_blogger_required
@@ -118,6 +122,23 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         else:
             return False
+
+#-------------------------------------[ CHART-API-DASHBOARD ]-----------------------------------------------------------------#
+
+def get_data(request, *args, **kwargs):
+    posts_name = []
+    user = User.objects.get(username='kingkong')
+    posts = user.post_set.all()
+
+    for post in posts:
+        comments = post.comment_set.count()
+        posts_name.append({
+            'post': post.title,
+            'comments': comments
+        })
+
+    return JsonResponse(posts_name, safe=False)
+
 
 
 #-------------------------------------[ POST-COMMENT ]-----------------------------------------------------------------#
