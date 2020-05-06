@@ -15,19 +15,29 @@
     <link type="text/css" href="{% static '/assets/css/argon.min.css' %}" rel="stylesheet">
     <link type="text/css" href="{% static '/layout/css/main.css' %}" rel="stylesheet">
     {% block style %}{% endblock %}
+
   </head>
 
   <body>
 
     <nav class='navbarb'>
+
       <a class='logo' href='{% url 'home' %}'>
         <div id='particles'></div>
-        <h1 class="font-italic">
-          Blogger
+        <h1>
+          Visibily
+          <sup>beta</sup>
         </h1>
       </a>
+
       <div class='controls'>
+        <a href='{% url 'post' %}'>
+          <span>posts</span>
+        </a>
         {% if request.user.is_authenticated %}
+          <a href='{% url 'users:profile' %}'>
+            <span>profile</span>
+          </a>
           <a href='{% url 'users:signout' %}'>
             <span>signout</span>
           </a>
@@ -43,6 +53,9 @@
     </nav>
 
 
+
+
+
     {% block content %}{% endblock %}
 
     <script src="{% static '/assets/vendor/jquery/jquery.min.js' %}"></script>
@@ -50,6 +63,29 @@
     <script src="{% static '/assets/vendor/bootstrap/bootstrap.min.js' %}"></script>
 
     <script src="{% static '/assets/js/argon.min.js' %}"></script>
+    <script type="text/javascript">
+
+      function getId(url) {
+          const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+          const match = url.match(regExp);
+
+          return (match && match[2].length === 11)
+            ? match[2]
+            : null;
+      }
+
+      figure = document.querySelectorAll('figure[class="media"]')
+
+      document.querySelectorAll('oembed[url]').forEach((element, x) => {
+        figure[x].innerHTML = ''
+        let video_id = getId(element.attributes.url.value);
+
+        let iframe = '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="//www.youtube.com/embed/'
+        + video_id + '" frameborder="0" allowfullscreen></iframe></div>';
+        figure[x].innerHTML = iframe
+      });
+
+    </script>
 
     {% block scripts %}{% endblock %}
   </body>
