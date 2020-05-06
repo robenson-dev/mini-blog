@@ -13,7 +13,7 @@ body {
   box-sizing: border-box;
 }
 nav.navbarb {
-  z-index: 7;
+  z-index: 15;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -42,7 +42,7 @@ nav.navbarb {
   top: 0;
   left: 0;
   width: 100%;
-  height: 70px;
+  height: 100px;
   color: #ecf0f1;
   background: currentColor;
   -webkit-box-shadow: 0 0 30px rgba(0,0,0,0.2);
@@ -70,7 +70,7 @@ nav.navbarb>a.logo {
   position: relative;
   width: 400px;
   height: 100%;
-  background: pink;
+  background: #e67e22;
   cursor: pointer;
   text-decoration: none;
   color: currentColor;
@@ -225,4 +225,11 @@ nav.navbarb>.controls>a:hover {
 }
 nav.navbarb>.controls>a:active {
   background: rgba(0,0,0,0.15);
+}
+
+
+
+img{
+  width: 100%;
+  height: auto;
 }
