@@ -124,7 +124,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 if os.environ.get('ENV') == 'PRODUCTION':
-    
+
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
     #SMTP Configuration
@@ -228,12 +228,12 @@ CKEDITOR_5_CONFIGS = {
 
 
 #S3 BUCKETS CONFIG
-
-AWS_ACCESS_KEY_ID = "AKIARKRRJ6TWBUDZEOGT"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_STORAGE_BUCKET_NAME = "robenson-crm1-bucket"
-
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# 
+# AWS_ACCESS_KEY_ID = "AKIARKRRJ6TWBUDZEOGT"
+# AWS_SECRET_ACCESS_KEY = "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"
+# AWS_STORAGE_BUCKET_NAME = "robenson-crm1-bucket"
+#
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
