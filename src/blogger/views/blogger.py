@@ -8,5 +8,5 @@ def home(request):
             return redirect('legendary:legendary-dashboard')
         else:
             return redirect('member:member-detail')
-
-    return render(request, 'blogger/home.html')
+    else:
+        return redirect('users:signin')
